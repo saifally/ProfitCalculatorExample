@@ -19,7 +19,14 @@ public class ProfitCalculatorTest {
 	public void testCalculateMaxProfitForStockBruteForce( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
         ProfitCalculator classUnderTest = new ProfitCalculator();
         Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockBruteForce(stockPrices));
-    }
+  }
+
+	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockInOnePass - Test Case ={1}")
+	@MethodSource("generateData")
+	public void testCalculateMaxProfitForStockInOnePass( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
+        ProfitCalculator classUnderTest = new ProfitCalculator();
+        Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockInOnePass(stockPrices));
+  }	
 
 	static Stream<Arguments> generateData() {
 	    return Stream.of(

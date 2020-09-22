@@ -21,21 +21,40 @@ public class ProfitCalculator {
 
 		// First pass , get the position of the lowest stock price, ignore the last one
 		// , we have to sell before that
-		int minStockPriceIndex = IntStream.range(0, stockPrices.size() - 1)
-		                 .boxed()
-										 .min(comparingInt(stockPrices::get))
-										 .get();
+		int minStockPriceIndex = IntStream.range(0, stockPrices.size() - 1).boxed().min(comparingInt(stockPrices::get)).get();
 
 		// Second and smaller pass, get Maximum price after minimum has happened
-		int maxStockPriceIndex = IntStream.range(minStockPriceIndex, stockPrices.size())
-		                  .boxed()
-											.max(comparingInt(stockPrices::get))
-											.get();
+		int maxStockPriceIndex = IntStream.range(minStockPriceIndex, stockPrices.size()).boxed().max(comparingInt(stockPrices::get)).get();
 
 		// System.out.println(maxStockPriceIndex+"-"+minStockPriceIndex);
 		// 3rd and 4th fetch
 		return stockPrices.get(maxStockPriceIndex) - stockPrices.get(minStockPriceIndex);
 
+	}
+	
+	// One Pass using Pre Java 8 , Old school
+	// Can not be done in Java 8 because lambdas can not use global variable
+	public Integer calculateMaxProfitForStockInOnePass(List<Integer> stockPrices) {
+
+		// Initialize the values
+		Integer lowestStockPrice = stockPrices.get(0);
+		Integer maxProfit = 0;
+		Integer profit = 0;
+
+		for (Integer stockPrice : stockPrices) {
+			// Keep assigning the lowest stock prices
+			if (lowestStockPrice > stockPrice) {
+				lowestStockPrice = stockPrice;
+			} else {
+				profit = stockPrice - lowestStockPrice;
+			}
+
+			// Keep checking if there is a bigger profit
+			if (profit > maxProfit) {
+				maxProfit = profit;
+			}
+		}
+		return maxProfit;
 	}
 
 }
