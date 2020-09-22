@@ -23,7 +23,16 @@ public class ProfitCalculatorTest {
 
 	static Stream<Arguments> generateData() {
 	    return Stream.of(
-	        Arguments.of(1, "NegativeTestNoStockPrices", Arrays.asList(0),0)
+					Arguments.of(1, "LowestAtMidDayMaxEndofTheDay", Arrays.asList(4,2,1,3,7),6),
+				  Arguments.of(2, "LowestAtMidDaySecondHighestMaxAtEndofTheDay", Arrays.asList(4,8,2,1,3,7),6),
+				  Arguments.of(3, "LowestAtStartOfTheDayMaxEndOfTheDay", Arrays.asList(3,4,5),2),
+				  Arguments.of(4, "LowestAtTheEndOfTheDayHoweverTooLateToSell", Arrays.asList(2,4,1),2),
+				  Arguments.of(5, "TwoLowestHoweverMaxIsAfterSecondLowest", Arrays.asList(2,4,2,6,1),4),
+				  Arguments.of(6, "TwoLowestHoweverMaxIsAfterFirstLowest", Arrays.asList(2,6,2,4,1),4),
+				  Arguments.of(7, "TwoSellOpportunity", Arrays.asList(2,6,2,6,2),4),
+				  Arguments.of(8, "NegativeTestTooLateToSell", Arrays.asList(2,1),0),
+				  Arguments.of(9, "NegativeTestFlatPriceAllDay", Arrays.asList(1,1,1,1,1,1,1,1),0),
+				  Arguments.of(10, "NegativeTestNoStockPrices", Arrays.asList(0),0)
 	    );
 	}
 }

@@ -19,7 +19,22 @@ public class ProfitCalculator {
 			return 0;
 		}
 
-		return 0;
+		// First pass , get the position of the lowest stock price, ignore the last one
+		// , we have to sell before that
+		int minStockPriceIndex = IntStream.range(0, stockPrices.size() - 1)
+		                 .boxed()
+										 .min(comparingInt(stockPrices::get))
+										 .get();
+
+		// Second and smaller pass, get Maximum price after minimum has happened
+		int maxStockPriceIndex = IntStream.range(minStockPriceIndex, stockPrices.size())
+		                  .boxed()
+											.max(comparingInt(stockPrices::get))
+											.get();
+
+		// System.out.println(maxStockPriceIndex+"-"+minStockPriceIndex);
+		// 3rd and 4th fetch
+		return stockPrices.get(maxStockPriceIndex) - stockPrices.get(minStockPriceIndex);
 
 	}
 
