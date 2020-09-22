@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
 public class ProfitCalculator {
 
 	// Brute force , a bit inefficient but good for TDD , Benchmark and readablility
-	public Integer calculateMaxProfitForStockBruteForce(List<Integer> stockPrices) {
+	public Integer calculateMaxProfitForStockPricesUsingBruteForce(List<Integer> stockPrices) {
 
 		// We need minimum two prices
 		if (stockPrices.size() < 2) {
@@ -31,10 +31,10 @@ public class ProfitCalculator {
 		return stockPrices.get(maxStockPriceIndex) - stockPrices.get(minStockPriceIndex);
 
 	}
-	
+
 	// One Pass using Pre Java 8 , Old school
 	// Can not be done in Java 8 because lambdas can not use global variable
-	public Integer calculateMaxProfitForStockInOnePass(List<Integer> stockPrices) {
+	public Integer calculateMaxProfitForStockPricesInOnePass(List<Integer> stockPrices) {
 
 		// Initialize the values
 		Integer lowestStockPrice = stockPrices.get(0);
@@ -55,6 +55,33 @@ public class ProfitCalculator {
 			}
 		}
 		return maxProfit;
+	}
+
+	// Java 8 code , a bit more efficient
+	public Integer calculateMaxProfitForStockPricesJava8(List<Integer> stockPrices) {
+
+		// We need minimum two prices
+		if (stockPrices.size() < 2) {
+			return 0;
+		}
+
+		// First pass , get the position of the lowest stock price, ignore the last one
+		// , we have to sell before that
+		int minStockPriceIndex = IntStream.range(0, stockPrices.size() - 1)
+				.boxed()
+				.min(comparingInt(stockPrices::get))
+				.get();
+
+		// Second operation , fetch the lowest value
+		int mimimumStockPrice = stockPrices.get(minStockPriceIndex);
+
+		// Third and smaller pass, get Maximum price after Minimum has happened
+		Integer maximumProfit = stockPrices.subList(minStockPriceIndex, stockPrices.size()).stream()
+				.map(stockPrice -> (stockPrice - mimimumStockPrice))
+//    	.peek(System.out::println)
+				.max(Comparator.comparing(Integer::valueOf)).get();
+
+		return maximumProfit;
 	}
 
 }

@@ -14,19 +14,27 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 public class ProfitCalculatorTest {
 
-	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockBruteForce - Test Case ={1}")
+	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockPricesUsingBruteForce - Test Case ={1}")
 	@MethodSource("generateData")
-	public void testCalculateMaxProfitForStockBruteForce( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
+	public void testCalculateMaxProfitForStockPricesUsingBruteForce( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
         ProfitCalculator classUnderTest = new ProfitCalculator();
-        Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockBruteForce(stockPrices));
+        Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesUsingBruteForce(stockPrices));
   }
 
-	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockInOnePass - Test Case ={1}")
+
+	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockPricesJava8 - Test Case ={1}")
 	@MethodSource("generateData")
-	public void testCalculateMaxProfitForStockInOnePass( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
+	public void testCalculateMaxProfitForStockPricesJava8( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
         ProfitCalculator classUnderTest = new ProfitCalculator();
-        Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockInOnePass(stockPrices));
-  }	
+        Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesJava8(stockPrices));
+  }
+
+	@ParameterizedTest( name = "#{index} calculateMaxProfitForStockPricesInOnePass - Test Case ={1}")
+	@MethodSource("generateData")
+	public void testCalculateMaxProfitForStockPricesInOnePass( int index, String testCase, List<Integer> stockPrices, Integer expectedProfit) {
+				ProfitCalculator classUnderTest = new ProfitCalculator();
+				Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesInOnePass(stockPrices));
+	}
 
 	static Stream<Arguments> generateData() {
 	    return Stream.of(
