@@ -10,3 +10,13 @@ Old school but very efficient - twice as fast as per benchmarks
 
 `calculateMaxProfitForStockPricesUsingStream`
 Using Java 8 stream and a bit less efficient but more readable
+
+
+##### Project setup
+This project is using Gradle Multi module
+
+https://docs.gradle.org/current/userguide/multi_project_builds.html
+
+The Intent is to isolate 2 concerns
+- Code and its unit test
+- Benchmarking the logic
