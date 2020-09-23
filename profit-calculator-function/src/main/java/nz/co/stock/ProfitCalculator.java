@@ -26,13 +26,12 @@ public class ProfitCalculator {
 				.min(comparingInt(stockPrices::get))
 				.get();
 
-		// Second and smaller pass, get Maximum price after minimum has happened
+		// Second and smaller pass, get maximum price after minimum has happened
 		int maxStockPriceIndex = IntStream.range(minStockPriceIndex, stockPrices.size())
 				.boxed()
 				.max(comparingInt(stockPrices::get))
 				.get();
 
-		// System.out.println(maxStockPriceIndex+"-"+minStockPriceIndex);
 		// 3rd and 4th fetch
 		return stockPrices.get(maxStockPriceIndex) - stockPrices.get(minStockPriceIndex);
 
@@ -54,7 +53,6 @@ public class ProfitCalculator {
 			} else {
 				profit = stockPrice - lowestStockPrice;
 			}
-
 			// Keep checking if there is a bigger profit
 			if (profit > maxProfit) {
 				maxProfit = profit;

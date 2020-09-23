@@ -23,7 +23,7 @@ public class ProfitCalculatorBenchmarks {
 	@Benchmark
 	@BenchmarkMode(Mode.AverageTime)
 	@OutputTimeUnit(TimeUnit.NANOSECONDS)
-	public void measureCalculateMaxProfitForStockPricesBruteForce() throws InterruptedException {
+	public void measureCalculateMaxProfitForStockPricesUsingBruteForce() throws InterruptedException {
 		
 		List<Integer> dataForBenchmark = IntStream.rangeClosed(0, 1000)
 			    .boxed().collect(Collectors.toList());
