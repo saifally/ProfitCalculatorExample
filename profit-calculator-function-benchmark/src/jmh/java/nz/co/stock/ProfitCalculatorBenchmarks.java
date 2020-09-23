@@ -17,7 +17,7 @@ import org.openjdk.jmh.runner.options.OptionsBuilder;
 public class ProfitCalculatorBenchmarks {
 
 	/*
-	 * Measures the performance of Brute force logic
+	 * Measures the performance of Brute force logic -4 pass
 	 */
 
 	@Benchmark
@@ -28,11 +28,11 @@ public class ProfitCalculatorBenchmarks {
 		List<Integer> dataForBenchmark = IntStream.rangeClosed(0, 1000)
 			    .boxed().collect(Collectors.toList());
 		ProfitCalculator classUnderTest = new ProfitCalculator();
-		classUnderTest.calculateMaxProfitForStockPricesInOnePass(dataForBenchmark);
+		classUnderTest.calculateMaxProfitForStockPricesUsingBruteForce(dataForBenchmark);
 	}
 
 	/*
-	 * Measures the performance of Brute force logic
+	 * Measures the performance of 3 pass and a stream
 	 */
 
 	@Benchmark
@@ -47,7 +47,7 @@ public class ProfitCalculatorBenchmarks {
 	}
 
 	/*
-	 * This benchmark type measures the performance of the logic
+	 * Measures the performance of 1 pass old school code
 	 */
 
 	@Benchmark
