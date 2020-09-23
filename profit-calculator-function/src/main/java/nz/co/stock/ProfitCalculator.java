@@ -77,12 +77,12 @@ public class ProfitCalculator {
 				.get();
 
 		// Second operation , fetch the lowest value
-		int mimimumStockPrice = stockPrices.get(minStockPriceIndex);
+		int minStockPrice = stockPrices.get(minStockPriceIndex);
 
 		// Third and smaller pass, get Maximum price after Minimum has happened
 		Integer maximumProfit = stockPrices.subList(minStockPriceIndex, stockPrices.size())
 				.stream()
-				.map(stockPrice -> (stockPrice - mimimumStockPrice))
+				.map(stockPrice -> (stockPrice - minStockPrice))
 				.max(Comparator.comparing(Integer::valueOf))
 				.get();
 
