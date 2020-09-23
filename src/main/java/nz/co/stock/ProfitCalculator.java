@@ -22,15 +22,15 @@ public class ProfitCalculator {
 		// First pass , get the position of the lowest stock price, ignore the last one
 		// , we have to sell before that
 		int minStockPriceIndex = IntStream.range(0, stockPrices.size() - 1)
-		     .boxed()
-				 .min(comparingInt(stockPrices::get))
-				 .get();
+				.boxed()
+				.min(comparingInt(stockPrices::get))
+				.get();
 
 		// Second and smaller pass, get Maximum price after minimum has happened
 		int maxStockPriceIndex = IntStream.range(minStockPriceIndex, stockPrices.size())
-		     .boxed()
-				 .max(comparingInt(stockPrices::get))
-				 .get();
+				.boxed()
+				.max(comparingInt(stockPrices::get))
+				.get();
 
 		// System.out.println(maxStockPriceIndex+"-"+minStockPriceIndex);
 		// 3rd and 4th fetch
@@ -83,9 +83,10 @@ public class ProfitCalculator {
 
 		// Third and smaller pass, get Maximum price after Minimum has happened
 		Integer maximumProfit = stockPrices.subList(minStockPriceIndex, stockPrices.size())
-		    .stream()
+				.stream()
 				.map(stockPrice -> (stockPrice - mimimumStockPrice))
-				.max(Comparator.comparing(Integer::valueOf)).get();
+				.max(Comparator.comparing(Integer::valueOf))
+				.get();
 
 		return maximumProfit;
 	}
