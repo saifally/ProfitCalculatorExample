@@ -6,10 +6,6 @@ build/
 gradle-app.setting
 
 # Eclipse
-*/.classpath
-*/.settings/
-*/.project
-*/bin/
 /.classpath
 /.settings/
 /.project

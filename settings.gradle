@@ -1,1 +1,4 @@
-rootProject.name = 'ProfitCalculatorExample'
+rootProject.name = 'profit-calculator'
+
+include 'profit-calculator-function'
+include 'profit-calculator-function-benchmark'

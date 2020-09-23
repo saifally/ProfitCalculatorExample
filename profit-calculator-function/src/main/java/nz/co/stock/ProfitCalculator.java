@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
  */
 public class ProfitCalculator {
 
-	// Brute force , a bit inefficient but good for TDD , Benchmark and readablility
+	// Brute force , a bit inefficient but good for TDD , Benchmark and Readability
 	public Integer calculateMaxProfitForStockPricesUsingBruteForce(List<Integer> stockPrices) {
 
 		// We need minimum two prices
@@ -64,7 +64,7 @@ public class ProfitCalculator {
 	}
 
 	// Java 8 code , a bit more efficient
-	public Integer calculateMaxProfitForStockPricesJava8(List<Integer> stockPrices) {
+	public Integer calculateMaxProfitForStockPricesUsingStream(List<Integer> stockPrices) {
 
 		// We need minimum two prices
 		if (stockPrices.size() < 2) {

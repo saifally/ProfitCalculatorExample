@@ -1,0 +1,18 @@
+plugins {
+  id "me.champeau.gradle.jmh" version "0.5.2"
+}
+
+apply plugin: 'me.champeau.gradle.jmh'
+
+dependencies {
+    compile project(':profit-calculator-function')
+}
+
+jmh {
+    include = 'nz\\.co\\.stock\\.ProfitCalculatorBenchmarks*.*'
+    humanOutputFile = null
+    //humanOutputFile = project.file("${project.buildDir}/reports/jmh/human.txt") // human-readable output file
+    //resultsFile = project.file("${project.buildDir}/reports/jmh/results.txt")
+    warmupIterations = 1
+    iterations = 1
+}

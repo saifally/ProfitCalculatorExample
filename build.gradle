@@ -1,21 +1,10 @@
-plugins {
-	id 'java'
-	id 'eclipse' // optional (to generate Eclipse project files)
-	id 'idea' // optional (to generate IntelliJ IDEA project files)
-}
+allprojects {
 
-repositories {
-	mavenCentral()
-}
+  apply plugin: "java"
+	apply plugin: "eclipse"
 
-dependencies {
-	testImplementation(platform('org.junit:junit-bom:5.7.0'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
-}
+	repositories {
+		mavenCentral()
+	}
 
-test {
-	useJUnitPlatform()
-	testLogging {
-        events "passed", "skipped", "failed"
-    }
 }
