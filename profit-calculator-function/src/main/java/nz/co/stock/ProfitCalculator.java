@@ -89,4 +89,82 @@ public class ProfitCalculator {
 		return maximumProfit;
 	}
 
+	// Divide and Conquer approach - recursively splits the problem into smaller subproblems
+	public Integer calculateMaxProfitForStockPricesUsingDivideAndConquer(List<Integer> stockPrices) {
+		// We need minimum two prices
+		if (stockPrices.size() < 2) {
+			return 0;
+		}
+		
+		return divideAndConquerHelper(stockPrices, 0, stockPrices.size() - 1);
+	}
+	
+	private Integer divideAndConquerHelper(List<Integer> stockPrices, int low, int high) {
+		// Base case: if we have only one element, no profit can be made
+		if (low >= high) {
+			return 0;
+		}
+		
+		// Base case: if we have only two elements, return the profit or 0
+		if (high - low == 1) {
+			return Math.max(0, stockPrices.get(high) - stockPrices.get(low));
+		}
+		
+		int mid = low + (high - low) / 2;
+		
+		// Calculate maximum profit in left half
+		int leftMaxProfit = divideAndConquerHelper(stockPrices, low, mid);
+		
+		// Calculate maximum profit in right half
+		int rightMaxProfit = divideAndConquerHelper(stockPrices, mid + 1, high);
+		
+		// Calculate maximum profit that crosses the middle point
+		// Find minimum price in left half
+		int minLeftPrice = stockPrices.get(low);
+		for (int i = low; i <= mid; i++) {
+			minLeftPrice = Math.min(minLeftPrice, stockPrices.get(i));
+		}
+		
+		// Find maximum price in right half
+		int maxRightPrice = stockPrices.get(mid + 1);
+		for (int i = mid + 1; i <= high; i++) {
+			maxRightPrice = Math.max(maxRightPrice, stockPrices.get(i));
+		}
+		
+		int crossMaxProfit = maxRightPrice - minLeftPrice;
+		
+		// Return the maximum of all three possibilities
+		return Math.max(Math.max(leftMaxProfit, rightMaxProfit), crossMaxProfit);
+	}
+
+	// Dynamic Programming approach using memoization - more space efficient
+	public Integer calculateMaxProfitForStockPricesUsingDP(List<Integer> stockPrices) {
+		// We need minimum two prices
+		if (stockPrices.size() < 2) {
+			return 0;
+		}
+		
+		int minPrice = stockPrices.get(0);
+		int maxProfit = 0;
+		
+		// Single pass through the array
+		// At each step, we either:
+		// 1. Update the minimum price seen so far, or
+		// 2. Calculate profit if we sell at current price and update max profit
+		for (int i = 1; i < stockPrices.size(); i++) {
+			int currentPrice = stockPrices.get(i);
+			
+			// Update minimum price if current price is lower
+			if (currentPrice < minPrice) {
+				minPrice = currentPrice;
+			} else {
+				// Calculate profit if we sell at current price
+				int currentProfit = currentPrice - minPrice;
+				maxProfit = Math.max(maxProfit, currentProfit);
+			}
+		}
+		
+		return maxProfit;
+	}
+
 }

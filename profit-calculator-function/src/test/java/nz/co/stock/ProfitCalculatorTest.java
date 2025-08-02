@@ -39,6 +39,22 @@ public class ProfitCalculatorTest {
 		Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesInOnePass(stockPrices));
 	}
 
+	@ParameterizedTest(name = "#{index} calculateMaxProfitForStockPricesUsingDivideAndConquer - Test Case ={1}")
+	@MethodSource("generateData")
+	public void testCalculateMaxProfitForStockPricesUsingDivideAndConquer(int index, String testCase, List<Integer> stockPrices,
+			Integer expectedProfit) {
+		ProfitCalculator classUnderTest = new ProfitCalculator();
+		Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesUsingDivideAndConquer(stockPrices));
+	}
+
+	@ParameterizedTest(name = "#{index} calculateMaxProfitForStockPricesUsingDP - Test Case ={1}")
+	@MethodSource("generateData")
+	public void testCalculateMaxProfitForStockPricesUsingDP(int index, String testCase, List<Integer> stockPrices,
+			Integer expectedProfit) {
+		ProfitCalculator classUnderTest = new ProfitCalculator();
+		Assertions.assertEquals(expectedProfit, classUnderTest.calculateMaxProfitForStockPricesUsingDP(stockPrices));
+	}
+
 	static Stream<Arguments> generateData() {
 		return Stream.of(Arguments.of(1, "LowestAtMidDayMaxEndOfTheDay", Arrays.asList(4, 2, 1, 3, 7), 6),
 				Arguments.of(2, "LowestAtMidDaySecondHighestMaxAtEndofTheDay", Arrays.asList(4, 8, 2, 1, 3, 7), 6),
